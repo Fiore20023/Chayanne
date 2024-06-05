@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chayanne</title>
+  <link rel="icon" href="chayanne.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    class=".bebas-neue-regular"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    src="https://kit.fontawesome.com/11042533ab.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="relative">
+  <div class="flex items-center relative">
+    <div
+      class="static ml-2 border-2 w-1/5 h-screen rounded-r-2xl bg-[##EEF0EB]"
+    >
+      <img
+        id="home"
+        class="w-7/12 mx-auto"
+        src="chayanne.ico"
+        href="index.html"
+        alt="icono logo chayanne"
+      />
+      <h2 class="text-white bg-black text-center p-2 m-2">M e n ú</h2>
+      <ul>
+        <li id="addAlbum" class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
+          <a href="addAlbum.html">Agregar Album</a>
+        </li>
+        <li id="tours" class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
+          <a href="turs.html">Fechas Shows</a>
+        </li>
+        <li id="logout" class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
+          <a href="login.html">Salir</a>
+        </li>
+      </ul>
+    </div>
+    <img
+      class="static w-5/6 opacity-60"
+      src="chayanneindex.avif"
+      alt="foto de chayanne"
+    />
+  </div>
+  <div class="w-5/12 text-center absolute top-44 left-1/4" >  
+    <h1 class="tit font-serif text-7xl relative">CHAYANNE</h1>
+    <p class="font-sans text-sm">
+      Elmer Figueroa Arce, más conocido por su nombre artístico Chayanne, es
+      un cantante, compositor, bailarín y actor puertorriqueño. Como solista,
+      ha lanzado 22 álbumes de estudio y se estima que ha vendido unos 40
+      millones de discos a nivel mundial lo que lo convierte en uno de los
+      artistas latinos con mayores ventas.
+    </p>
+  </div>
+  <div class="flex absolute top-2/3 left-1/4 justify-evenly" id="albums-container">
+    <!-- Álbumes se generarán dinámicamente aquí -->
+  </div> 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="home.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
+

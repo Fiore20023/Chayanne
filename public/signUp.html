@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link class=".bebas-neue-regular" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+</head>
+<body class="relative">
+    <div class="flex items-center  relative">
+     
+      </div>
+      <img
+        class="static w-5/6 opacity-60"
+        src="chayanneindex.avif"
+        alt="foto de chayanne"
+      />
+    </div>
+
+
+<div class="w-full text-center justify-center absolute top-0">   
+<img
+          class="w-auto mx-auto"
+          src="chayanne.ico"
+          href="index.html"
+          alt="icono logo chayanne"
+        />
+<h3 class="mt-5 font-sans text-4xl relative">Registro</h3>
+
+<div class="flex text-center justify-center mt-9">
+    <div class=" flex text-center justify-center absolute">
+        <form id="miformulario" method="post" action="https://formspree.io/f/moqgkroz">
+            <label for="nombre">Nombre</label><span><input type="text" id="nombre" name="nombre" ></span><br><br>
+            <label for="apellido">Apellido</label><span></span><input type="text" id="apellido" name="apellido"></span><br><br>
+            <label for="mail">Email</label><span></span><input type="text" id="mail" name="mail"></span><br><br>
+            <label for="pass">Password </label><span></span><input type="password" id="pass" name="pass"></span><br><br>
+            <input class=" text-xl bg-black text-white pt-3 pb-3 pl-6 pr-6 rounded-2xl" type="submit">
+        </form>
+    </div>
+</div>
+</div>
+<script src="login.js"></script>
+</body>
+</html>

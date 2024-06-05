@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chayanne Albun Bailemos Otra Vez</title>
+    <link rel="icon" href="chayanne.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      class=".bebas-neue-regular"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/11042533ab.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="relative">
+    <span id="welcome"></span>
+    <i class="fa-light fa-ticket"></i>
+    <div class="flex items-center relative text-center justify-between">
+      <div
+        class="static ml-2 border-2 w-1/5 h-screen rounded-r-2xl bg-[##EEF0EB]"
+      >
+        <a href="index.html">
+          <img
+            class="w-7/12 mx-auto"
+            src="chayanne.ico"
+            alt="icono logo chayanne"
+          />
+        </a>
+
+        <h2 class="text-white bg-black text-center p-2 m-2">M e n ú</h2>
+        <ul>
+          <li class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
+            <a href="addAlbum.html">Agregar Album</a>
+          </li>
+
+          <li class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
+            <a href="login.html">Salir</a>
+          </li>
+        </ul>
+      </div>
+      <img
+        class="static w-4/12 opacity-60 hover:opacity-100"
+        src="bailemos_otra_vez.png"
+        alt="foto del album Bailemos Otra Vez"
+      />
+    </div>
+    <div class="w-3/5 text-right absolute top-24">
+      <h1 class="font-sans text-4xl relative">FECHAS DE SHOWS</h1>
+    </div>
+    <div
+      class="grid lg:gap-3 lg:grid-cols-3 sm:grid-rows-6 sm:gap-5 bg-transparent p-4 bg-red-900 w-4/5 mx-48 rounded-lg w-4/12 flex table-column absolute top-40 left-1/4 justify-between"
+    >
+      <ul>
+        <li
+          class="text-gray-900 text-sm opacity-70 hover:opacity-100 hover:text-gray-950 hover:text-xl flex justify-between items-center"
+        >
+          <span  class="place">Argentina 24/04/2024</span>
+          <button
+            onclick="getTickets('Argentina')"
+            class="btn text-xs bg-black text-white pt-3 pb-3 pl-6 pr-6 rounded-2xl"
+          >
+            Comprar
+          </button>
+        </li>
+        <br />
+
+        <li
+          class="text-gray-900 text-sm opacity-70 hover:opacity-100 hover:text-gray-950 hover:text-xl flex justify-between items-center"
+        >
+          <span class="place">España 8/06/2024</span>
+          <button
+            onclick="getTickets('España')"
+            class="btn text-xs bg-black text-white pt-3 pb-3 pl-6 pr-6 rounded-2xl Espana"
+          >
+            Comprar
+          </button>
+        </li>
+        <br />
+        <li
+          class="text-gray-900 text-sm opacity-70 hover:opacity-100 hover:text-gray-950 hover:text-xl flex justify-between items-center"
+        >
+          <span class="place">Guatemala 06/08/2024</span>
+          <button
+            onclick="getTickets('Guatemala')"
+            class="btn text-xs bg-black text-white pt-3 pb-3 pl-6 pr-6 rounded-2xl"
+          >
+            Comprar
+          </button>
+        </li>
+        <br />
+        <li
+          class="text-gray-900 text-sm opacity-70 hover:opacity-100 hover:text-gray-950 hover:text-xl flex justify-between items-center"
+        >
+          <span class="place">Chile 15/10/2024</span>
+          <button
+            onclick="getTickets('Chile')"
+            class="btn text-xs bg-black text-white pt-3 pb-3 pl-6 pr-6 rounded-2xl"
+          >
+            Comprar
+          </button>
+        </li>
+        <br />
+        <li
+          class="text-gray-900 text-sm opacity-70 hover:opacity-100 hover:text-gray-950 hover:text-xl flex justify-between items-center"
+        >
+          <span class="place">Peru 07/12/2024</span>
+          <button
+            onclick="getTickets('Peru')"
+            class="btn text-xs bg-black text-white pt-3 pb-3 pl-6 pr-6 rounded-2xl"
+          >
+            Comprar
+          </button>
+        </li>
+      </ul>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <script src="tours.js"></script>
+  </body>
+</html>
