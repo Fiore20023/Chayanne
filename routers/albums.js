@@ -1,7 +1,8 @@
+const  album  = require('../models/album');
 
 const express = require('express');
 const router = express.Router();
-const  album  = require('../models/album');
+
 
 
 //crear album
@@ -23,11 +24,11 @@ router.post('/', async (req, res) => {
 // Editar un álbum ---UPDATE---
 router.put('/:id', async (req, res) => {
     try {
-        const album = await album.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-        if (!album) {
+        const albumActualizado = await album.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!albumActualizado) {
             return res.status(404).json({ error: 'Álbum no encontrado' });
         }
-        res.json(album);
+        res.json(albumActualizado);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -47,23 +48,36 @@ router.get('/', async (req, res) => {
 });
 
 // Obtener un álbum específico
-router.get('/:id', async (req, res) => {
+/*router.get('/:id', async (req, res) => {
     try {
-        const album = await album.findById(req.params.id);
-        if (!album) {
+        const albumEncontrado = await album.findById(req.params.id);
+        if (!albumEncontrado) {
             return res.status(404).json({ error: 'Álbum no encontrado' });
         }
-        res.json(album);
+        res.json(albumEncontrado);
     } catch (error) {
         res.status(400).json({ error: error.message });
+    }
+});*/
+
+// Obtener un álbum específico
+router.get('/:id', async (req, res) => {
+    try {
+        const albumEncontrado = await album.findById(req.params.id);
+        if (!albumEncontrado) {
+            return res.status(404).json({ error: 'Álbum no encontrado' });
+        }
+        res.json(albumEncontrado);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener el álbum' });
     }
 });
 
 // Eliminar un álbum
 router.delete('/:id', async (req, res) => {
     try {
-        let album = await album.findByIdAndDelete(req.params.id);
-        if (!album) {
+        let albumEliminado = await album.findByIdAndDelete(req.params.id);
+        if (!albumEliminado) {
             return res.status(404).json({ error: 'Álbum no encontrado' });
         }
         res.json({ message: 'Álbum eliminado correctamente' });
@@ -73,5 +87,4 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
-
 

@@ -1,7 +1,5 @@
-
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
 
 // Definir el esquema de Álbum
 const AlbumSchema = new Schema({
@@ -9,19 +7,16 @@ const AlbumSchema = new Schema({
     type: String,
     required: true,
   },
-
   lanzamiento: {
     type: Number,
     required: true, 
-    
-   validate: {
-    validator: function(v) {
-        return v > 0;
-    },
-    message: 'El año de lanzamiento debe ser mayor a cero.'
-  }
-},
-  
+    validate: {
+      validator: function(v) {
+          return v > 0;
+      },
+      message: 'El año de lanzamiento debe ser mayor a cero.'
+    }
+  },
   descripcion: {
     type: String,
     required: true, 
@@ -30,20 +25,26 @@ const AlbumSchema = new Schema({
   },
   imagen: {
     type: String,
-}
+  },
+  canciones: [{
+    titulo: {
+      type: String,
+      required: true
+    },
+    duracion: {
+      type: String,
+      required: true
+    },
+    youtubeLink: {
+      type: String,
+      required: true
+    }
+  }]
 });
 
-let canciones = new Schema({
-  numCancion: Number,
-  titulo: String,
-  duracion: String,
-  artista: String,
-  youtubeLink: String})
-
 // Crear el modelo de Álbum
-const albums = mongoose.model("albums", AlbumSchema);
-//Exportar el modelo
+const Album = mongoose.model("Album", AlbumSchema);
 
-module.exports = albums;
-
+// Exportar el modelo
+module.exports = Album;
 
