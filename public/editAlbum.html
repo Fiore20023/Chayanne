@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chayanne Albun Atado a tu Amor</title>
-    <link rel="icon" href="chayanne.ico" type="image/x-icon" />
+    <title>Add Album</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,10 +13,11 @@
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
   </head>
   <body class="relative">
     <div class="static"><img id="borrar" class="w-7 absolute right-1/3 top-56" onclick="" src="papelera.png" alt="boton borrar album"><br>
-      <img class="w-9 absolute right-1/3 top-28" onclick="" src="editar.png" alt="boton borrar album"></div>
+      
     <div  class="flex items-center relative justify-between">
       <div
         class="static ml-2 border-2 w-1/5 h-screen rounded-r-2xl bg-[##EEF0EB]"
@@ -28,10 +28,7 @@
    
         <h2 class="text-white bg-black text-center p-2 m-2">M e n ú</h2>
         <ul>
-          <li class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
-            <a href="addAlbum.html">Agregar Album</a>
-          </li>
-          <li class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
+              <li class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
             <a href="addSong.html">Agregar Canción</a>
           </li>
           <li class="text-center hover:bg-slate-900 hover:text-white p-2 m-2">
@@ -42,82 +39,66 @@
           </li>
         </ul>
       </div>
-      
-      <img id="imagenAlbum"
-        class="static w-4/12 opacity-60 hover:opacity-100"
-        src="atado_a_tu_amor.png"
-        alt="foto del album Bailemos Otra Vez"
+      <div class="flex items-center relative"></div>
+      <img
+        class="static w-5/6 opacity-60"
+        src="chayanneindex.avif"
+        alt="foto de chayanne"
       />
-      
     </div>
-    
-    <div class="w-3/5 text-right fixed top-24 ">
 
-      <h1 id="tituloAlbum" class="font-sans text-4xl sticky">ATADO A TU AMOR</h1> <h2 id="fechaLanzamiento">1998</h2>
-      
+    <div class="ml-96 flex-row w-4/6 text-center justify-center absolute top-0">
+      <img
+        class="w-min mx-auto"
+        src="chayanne.ico"
+        href="index.html"
+        alt="icono logo chayanne"
+      />
+      <h3 class="mt-5 font-sans text-4xl relative">Editar Album</h3>
+
+      <div class="flex text-center justify-center mt-9">
+        <div class="flex text-center justify-center absolute">
+          <form action="" method="post">
+            <label  for="album">Nombre del Album</label
+            ><input type="text" id="Album" name="Album"  />
+            <label for="lanzamiento">Año de Lanzamiento del Album</label
+            ><input
+              type="number"
+              id="lanzamiento"
+              name="lanzamiento"
+              min="1700"
+              max="2024"
+            /><br /><br />
+            <textarea name="descripcion" id="descripcion" cols="30" rows="10">
+Descripción</textarea
+            ><br />
+            <label for="imagen_album">Imagen del Album</label>
+            <input
+              type="url"
+              id="imagenAlbum"
+              name="imagen_album"
+              class="imagen_album"
+              placeholder="Colocar link de la imagen: https://www.webdelaimagen.com/album.jpg"
+            />
+            <span>
+              <button id="guardarCambios"
+                class="text-xl bg-black text-white pt-0 pb-0 pl-6 pr-6 m-auto rounded-2xl"
+              >
+                <span>Guardar</span><link rel="stylesheet" href="editarAlbum" />
+              </button>
+              <button
+                class="text-xl bg-black text-white pt-0 pb-0 pl-6 pr-6 m-auto rounded-2xl"
+              >
+                <span>Cancelar</span
+                ><link rel="stylesheet" href="editarAlbum" />
+              </button>
+            </span>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="w-4/12 flex table-column absolute top-40 left-1/4 justify-between">
-      <p id="detalle" class="font-sans text-sm static justify-stretch">Este álbum es el más exitoso en la carrera del cantante puertorriqueño-estadounidense, debido a sus ventas, con este disco llegó a cumplir uno de sus sueños, llegar a otro continente, como lo fue Europa, ya que tuvo gran éxito en países como Italia, Francia, Portugal, Turquía y España, país en el cual el álbum arrasó en siendo el primer disco de Chayanne que supera 1 000 000 de discos en dicho país. Forma parte de la lista de los 100 discos que debes tener antes del fin del mundo, publicada en 2012 por Sony Music.</p>
-      <br> 
-      <ul id="listadoCanciones">
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950 hover:text-xl"><span>La Clave</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950  hover:text-xl"><span>De Tanto</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950  hover:text-xl"><span>Necesito un Segundo</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950  hover:text-xl"><span>Como Tu y Yo</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950  hover:text-xl"><span>Vivir Bonito</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950  hover:text-xl"><span>Se me quedó</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-            <li class="text-gray-400 opacity-70 hover:opacity-100 hover:text-gray-950  hover:text-xl"><span>Te Amo y Punto</span>
-                <audio controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </li>
-          </ul>
-    </div>
-  </div>
-  <div id="demasAlbum" class="w-7/12 flex absolute bottom-2 right-0 justify-center">
-    <a class=" w-1/12 me-11 opacity-70 hover:opacity-100" href="album_bailemosotravez.html">
-      <img src="bailemos_otra_vez.png" alt="foto del album bailemos otra vez"
-    /></a>
-    <a class="w-1/12 me-11 opacity-70 hover:opacity-100" href="album_simplemente.html">
-      <img src="simplemente.png" alt="foto del album simplemente"
-    />
-    <a class="w-1/12 me-11 opacity-70 hover:opacity-100" href="album_provocame.html">
-      <img src="provocame.png" alt="foto del album atado a tu amor"
-    /></a>
-   </div>
-   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="login.js"></script>
+    <script src="album.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
-
- 
 </html>

@@ -1,54 +1,33 @@
 
-// Iniciar el servidor
-/*app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
-
-module.exports = app; // Exportar la instancia de la aplicación Express
-module.exports = proyectoChayanne;*/
-
-const express = require ('express');
-const app = express();
+const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-
-const port = /*process.env.PORT ||*/ 5000;
+const app = express();
+const port = 5000;
 
 // Conectar a MongoDB
-mongoose
-  .connect("mongodb+srv://Fiorella:Prueba2024@cluster0.hdrctxp.mongodb.net/proyectoChayanne?retryWrites=true&w=majority&appName=Cluster0l")
-  .then(function(db){
-    console.log("Conectado a MongoDB");
-  })
-  .catch(function(err){
-    console.log(err);
-  });
+mongoose.connect("mongodb+srv://Fiorella:Prueba2024@cluster0.hdrctxp.mongodb.net/proyectoChayanne?retryWrites=true&w=majority&appName=Cluster0")
+    .then(() => console.log('Conectado a MongoDB'))
+    .catch(err => console.error('Error al conectar a MongoDB:', err));
 
-// Middleware: utilizar el paquete cors
+// Middleware
 app.use(cors());
 app.use(express.json());
-
-// Importar rutas
-const router = require("./routers/index");
+app.use(express.urlencoded({ extended: true }));
 
 // Servir archivos estáticos desde la carpeta "public"
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Usar las rutas middleware
-app.use('/', router);
+// Importar y usar enrutadores
+const albumRouter = require('./routers/albums');
+const cancionRouter = require('./routers/cancion');
+
+app.use('/albums', albumRouter);
+app.use('/canciones', cancionRouter);
 
 // Iniciar el servidor
 app.listen(port, () => {
-  console.log(`Servidor funcionando en el puerto ${port}`);
+    console.log(`Server running on port ${port}`);
 });
-
-// Exportar la instancia de la aplicación Express
-module.exports = app;
-
-
-
-
-
-
 

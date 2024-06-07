@@ -1,5 +1,27 @@
-const mongoose = require("mongoose");
+
+
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+// Definir el esquema de Canción
+const CancionSchema = new Schema({
+  titulo: {
+    type: String,
+    required: true,
+  },
+  duracion: {
+    type: Number,
+    required: true,
+  },
+  youtubeLink: {
+    type: String,
+    required: true,
+    match: [
+      /^https?:\/\/(www.youtube.com|youtu.be)\/.+$/,
+      "Por favor, ingrese un enlace válido de YouTube",
+    ],
+  },
+});
 
 // Definir el esquema de Álbum
 const AlbumSchema = new Schema({
@@ -9,42 +31,34 @@ const AlbumSchema = new Schema({
   },
   lanzamiento: {
     type: Number,
-    required: true, 
-    validate: {
-      validator: function(v) {
-          return v > 0;
-      },
-      message: 'El año de lanzamiento debe ser mayor a cero.'
-    }
+    required: true,
   },
   descripcion: {
     type: String,
-    required: true, 
-    minlength: 5, 
-    maxlength: 200, 
+    required: true,
+    minlength: 5,
+    maxlength: 200,
   },
   imagen: {
     type: String,
+    match: [
+      /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/,
+      "Por favor, ingrese una URL válida para la imagen",
+    ],
   },
-  canciones: [{
-    titulo: {
-      type: String,
-      required: true
-    },
-    duracion: {
-      type: String,
-      required: true
-    },
-    youtubeLink: {
-      type: String,
-      required: true
-    }
-  }]
+  favoritos: {
+    type: Boolean,
+    default: false,
+  },
+  listadoCanciones: [CancionSchema],
 });
 
-// Crear el modelo de Álbum
-const Album = mongoose.model("Album", AlbumSchema);
+// Crear los modelos
+const Album = mongoose.model('Album', AlbumSchema);
+const Cancion = mongoose.model('Cancion', CancionSchema);
 
-// Exportar el modelo
-module.exports = Album;
+// Exportar los modelos
+module.exports = { Album, Cancion };
+
+
 
