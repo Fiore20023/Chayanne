@@ -1,37 +1,35 @@
 
 
-let mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-// Definir la regex para validar el email
-const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
-// Definir el esquema de usuario
-let UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        required: [true, 'El nombre es obligatorio'],
-        minlength: [2, 'El nombre debe tener al menos 2 caracteres']
+        required: true
     },
     apellido: {
         type: String,
-        required: [true, 'El apellido es obligatorio'],
-        minlength: [2, 'El apellido debe tener al menos 2 caracteres']
+        required: true
     },
-    email: {
+    mail: {
         type: String,
-        required: [true, 'El email es obligatorio'],
-        unique: true,
-        match: [emailRegex, 'Por favor, ingrese un email válido']
+        required: true,
+        unique: true
     },
-    contraseña: {
+    pass: {
         type: String,
-        required: [true, 'La contraseña es obligatoria']
-    },
-    
+        required: true
+    }
 });
 
-// Crear el modelo de usuario
-const User = mongoose.model('User', UserSchema);
+// Middleware para hashear el password antes de guardarlo
+UserSchema.pre('save', async function (next) {
+    if (this.isModified('pass')) {
+        this.pass = await bcrypt.hash(this.pass, 10);
+    }
+    next();
+});
 
+const User = mongoose.model('User', UserSchema);
 module.exports = User;

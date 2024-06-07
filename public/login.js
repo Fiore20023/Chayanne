@@ -1,47 +1,35 @@
-/*function validarFormulario() {
-  // Obtener los valores de los campos del formulario
-  console.log("Validando formulario...");
-  const mail = document.getElementById("input").value.trim();
- //const pass = document.getElementById("pass").value.trim();
- 
-  // Verificar si alguno de los campos está vacío
-if (input === '' ) {
-      // Mostrar alerta con SweetAlert si algún campo está vacío
-      swal("Oops!", "Por favor, completa todos los campos.", "warning");
-      return true; // Evitar que el formulario se envíe
-  }
 
-  // Si todos los campos están completos, se envía el formulario
-  return false;
-}*/
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
 
-// Función para validar campos vacíos
-function validarCamposVacios() {
-  let inputs = document.querySelectorAll('input'); // Selecciona todos los campos de entrada
+    const mail = document.getElementById('mail').value;
+    const pass = document.getElementById('pass').value;
 
-  for (const input of inputs) {
-      if (input.value.trim() === '') {
-          return false; // Si algún campo está vacío, retorna false
-      }
-  }
+    try {
+        const response = await axios.post('http://localhost:5000/users/login', {
+            mail,
+            pass
+        });
 
-  return true; // Todos los campos están llenos
-}
-
-// Función para manejar el envío del formulario
-function enviarFormulario(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
-
-    if (validarCamposVacios()) {
-        // Todos los campos están llenos, puedes procesar los datos aquí
-        // Por ejemplo, puedes enviar una solicitud al servidor o realizar otras acciones
-        console.log('Formulario válido. Datos procesados correctamente.');
-    } else {
-        // Al menos un campo está vacío, muestra una alerta
-        swal('Error', 'No pueden haber campos vacíos', 'error');
+        if (response && response.data && response.data.token) {
+            const token = response.data.token;
+            localStorage.setItem('token', token);
+            alert('Inicio de sesión exitoso');
+            window.location.href = 'http://localhost:5000/index.html'; // Redirigir a la página principal después de iniciar sesión
+        } else {
+            alert('Error al iniciar sesión: Respuesta incorrecta del servidor');
+        }
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.error) {
+            alert('Error al iniciar sesión: ' + error.response.data.error);
+        } else {
+            alert('Error al iniciar sesión: Respuesta incorrecta del servidor');
+        }
     }
-}
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = 'http://localhost:5000/index.html';
+    }})
 
-// Asigna la función al evento de envío del formulario
-const formulario = document.querySelector('form');
-formulario.addEventListener('submit', enviarFormulario);

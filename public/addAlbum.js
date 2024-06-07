@@ -31,6 +31,8 @@ try{
                 icon: 'success',
                 confirmButtonText: 'ok',
             })
+            //console.log('Album updated successfully:', response.data);
+        alert('Album updated successfully!');
         
         .then(() => {
             window.location.href = `./album.html?album=${albumId}`;

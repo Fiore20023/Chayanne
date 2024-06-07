@@ -1,121 +1,78 @@
-// Importar Axios
-const axios = require('axios');
 
+document.addEventListener('DOMContentLoaded', function () {
+  const albumId = getAlbumIdFromUrl();
+  const editAlbumForm = document.getElementById('editAlbumForm');
+  const deleteAlbumBtn = document.getElementById('borrarAlbum'); // Cambiado de 'borrar' a 'borrarAlbum'
+  const cancelarCambiosBtn = document.getElementById('cancelarCambios');
 
-let titulo=document.getElementById ('Album');
-let albumImg=document.getElementById ('imagenAlbum');
-let fecha=document.getElementById ('lanzamiento');
-let descripcion=document.getElementById ('descripcion');
-let guardar=document.getElementById ('guardarCambios');
+  // Función para obtener el ID del álbum desde la URL
+  function getAlbumIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
+  }
 
-guardarCambios.addEventListener(click, function(){
-    axios.post( "http://localhost:5000/Album",{
-      album:titulo.value,
-      lanzamiento:fecha.value,
-      descripcion:descripcion.value,
-    }).then(function(respuesta){
-        alert (respuesta);
-    })
-  });
+  // Obtener y mostrar los detalles del álbum
+  getAlbumDetails(albumId);
 
+  async function getAlbumDetails(albumId) {
+    try {
+      const response = await axios.get(`http://localhost:5000/albums/${albumId}`);
+      const album = response.data;
 
+      // Llenar el formulario con los detalles del álbum
+      document.getElementById('albumTitle').value = album.nombreAlbum;
+      document.getElementById('lanzamiento').value = album.lanzamiento;
+      document.getElementById('descripcion').value = album.descripcion;
+      document.getElementById('imagenAlbum').value = album.imagen;
 
+    } catch (error) {
+      console.error('Error fetching album details:', error);
+      alert('Error fetching album details. Please try again later.');
+    }
+  }
 
-  /* / Importar Axios
+  // Manejar la edición del álbum
+  editAlbumForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-const axios = require('axios');
+    const nombreAlbum = document.getElementById('albumTitle').value;
+    const albumLanzamiento = document.getElementById('lanzamiento').value;
+    const albumDescripcion = document.getElementById('descripcion').value;
+    const albumImagen = document.getElementById('imagenAlbum').value;
 
-
-let titulo=document.getElementById ('tituloAlbum');
-let albumImg=document.getElementById ('imagenAlbum');
-let otrosAlbums=document.getElementById ('demasAlbum');
-let canciones=document.getElementById ('listadoCanciones');
-let fecha=document.getElementById ('fechaLanzamiento');
-let descripcion=document.getElementById ('detalle');
-let borrar=document.getElementById ('borrar');
-let guardar=document.getElementById ('guardarCambios');
-
-/*guardarCambios.addEventListener(click, function(){
-    axios.post ( "http://localhost:5000/Albums",{
-      //parrafo_resp.innertext = respuesta   para mostrar respueta en el html
-  });
-
-  let boton = document.getElementById("botonEdit");
-
-  document.addEventListener('DOMContentLoaded', function() {
-      const albumId = getAlbumIdFromUrl();
-      if (albumId) {
-        loadAlbumDetails(albumId);
-      }
-    
-      document.getElementById("botonEdit").addEventListener("click", editAlbum);
-    
-      document.getElementById("botonCancel").addEventListener("click", function() {
-        window.location.href = `./album.html?album=${albumId}`;
+    try {
+      const response = await axios.put(`http://localhost:5000/albums/${albumId}`, {
+        nombreAlbum: nombreAlbum,
+        lanzamiento: albumLanzamiento,
+        descripcion: albumDescripcion,
+        imagen: albumImagen
       });
-    });
-    
-    const getAlbumIdFromUrl = () => {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('album');
-    };
-    
-    const getInputValues = () => {
-      return {
-        titulo: document.getElementById('titulo').value,
-        descripcion: document.getElementById('descripcion').value,
-        portada: document.getElementById('portada').value,
-      };
-    };
-    
-    const validateInputs = (titulo, descripcion) => {
-      if (titulo.trim() === '' && descripcion.trim() === '') {
-        swal("Debes completar el título y la descripción", { icon: "error" });
-        return false;
-      } else if (titulo.trim() === '') {
-        swal("Debes completar el título", { icon: "error" });
-        return false;
-      } else if (descripcion.trim() === '') {
-        swal("Debes completar la descripción", { icon: "error" });
-        return false;
-      }
-      return true;
-    };
-    
-    const loadAlbumDetails = async (albumId) => {
+
+      console.log('Album updated successfully:', response.data);
+      alert('Album updated successfully!');
+    } catch (error) {
+      console.error('Error updating album:', error);
+      alert('Error updating album. Please try again later.');
+    }
+  });
+
+  // Manejar la eliminación del álbum
+  deleteAlbumBtn.addEventListener('click', async function () {
+    if (confirm('¿Estás seguro de que deseas eliminar este álbum?')) {
       try {
-        const response = await axios.get(`http://localhost:5000/albums/band/${albumId}`);
-        const album = response.data;
-        document.getElementById('titulo').value = album.titulo;
-        document.getElementById('descripcion').value = album.descripcion;
-        document.getElementById('portada').value = album.portada;
+        const response = await axios.delete(`http://localhost:5000/albums/${albumId}`);
+        console.log('Album deleted successfully:', response.data);
+        alert('Album deleted successfully!');
+        window.location.href = 'index.html'; // Redirigir a la página principal después de eliminar
       } catch (error) {
-        console.error('Error loading album details:', error);
-        swal("Error", "No se pudo cargar la información del álbum", "error");
+        console.error('Error deleting album:', error);
+        alert('Error deleting album. Please try again later.');
       }
-    };
-    
-    const editAlbum = async (e) => {
-      e.preventDefault();
-      const albumId = getAlbumIdFromUrl();
-      const albumData = getInputValues();
-    
-      if (!validateInputs(albumData.titulo, albumData.descripcion)) {
-        return;
-      }
-    
-      try {
-        await axios.put(`http://localhost:5000/albums/band/${albumId}`, albumData);
-        swal({
-          title: '¡Álbum editado!',
-          text: 'Has modificado el álbum correctamente.',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        }).then(() => {
-          window.location.href = `./album.html?album=${albumId}`;
-        });
-      } catch (error) {
-        console.error('Error editing album:', error);
-        swal("Error", "No se pudo editar el álbum", "error");
-      }
-    }*/
+    }
+  });
+
+  // Manejar la cancelación de cambios
+  cancelarCambiosBtn.addEventListener('click', function () {
+    window.location.href = 'index.html'; // Redirigir a la página principal
+  });
+});

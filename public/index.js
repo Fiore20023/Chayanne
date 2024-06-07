@@ -70,71 +70,11 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = `album.html?id=${id}`;
   }
 });
+ // Función para cerrar sesión
+function logout() {
+    // Eliminar el token del almacenamiento local
+    localStorage.removeItem('token');
+    // Redirigir al usuario a la página de inicio de sesión
+    window.location.href = 'login.html';
+}
 
-
-/*document.addEventListener('DOMContentLoaded', function () {
-  // Obtener el contenedor de álbumes
-  const albumsContainer = document.getElementById('albums-container');
-
-  // Verificar si el contenedor existe antes de continuar
-  if (!albumsContainer) {
-      console.error('Error: Element with id "albums-container" not found.');
-      return;
-  }
-
-  const getAlbumIdFromUrl = () => {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('album');
-  };
-
-  const albumId = getAlbumIdFromUrl();
-
-  document.getElementById("home").addEventListener("click", function () {
-      window.location.href = 'index.html';
-  });
-
-  document.getElementById("addAlbum").addEventListener("click", function () {
-      window.location.href = 'addAlbum.html';
-  });
-
-  document.getElementById("tours").addEventListener("click", function () {
-      window.location.href = "tours.html";
-  });
-
-  document.getElementById("logout").addEventListener("click", function () {
-      window.location.href = "login.html";
-  });
-
-  getAlbums();
-
-  async function getAlbums() {
-      try {
-          const response = await axios.get('http://localhost:5000/albums');
-          renderAlbums(response.data);
-      } catch (error) {
-          console.error('Error fetching albums:', error);
-          console.error('Failed to fetch albums. Please try again later.');
-      }
-  }
-
-  function renderAlbums(albums) {
-      const container = document.getElementById('albums-container');
-      container.innerHTML = ''; // Limpiar el contenedor antes de renderizar los álbumes
-
-      albums.forEach(album => {
-          const albumElement = document.createElement('div');
-          albumElement.className = 'album';
-
-          const imageUrl = album.imagen || 'chayanne.ico'; // Imagen por defecto
-          albumElement.innerHTML = `
-              <a href="album.html?id=${album._id}"> <!-- Agregar el ID del álbum como parámetro en la URL -->
-                  <img src="${imageUrl}" alt="${album.titulo}" class="album-img">
-                  <h2>${album.nombreAlbum}</h2>
-                  <p>Año: ${album.lanzamiento}</p>
-              </a>
-          `;
-
-          container.appendChild(albumElement);
-      });
-  }
-});*/

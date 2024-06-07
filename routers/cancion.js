@@ -3,7 +3,7 @@ const router = express.Router();
 const { Album } = require('../models/album');
 
 // Ruta para agregar una canción a un álbum
-router.put('/:id/canciones', async (req, res) => {
+router.post('/:id/', async (req, res) => {
   try {
     const { titulo, duracion, youtubeLink } = req.body;
     const album = await Album.findById(req.params.id);
@@ -26,6 +26,20 @@ router.put('/:id/canciones', async (req, res) => {
   }
 });
 
+// Actualizar un álbum
+router.put('/:id/canciones', async (req, res) => {
+    try {
+      const { _id, ...updateData } = req.body;
+      const album = await Album.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true });
+      if (!album) {
+        return res.status(404).json({ error: 'Álbum no encontrado' });
+      }
+      res.json(album);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
 // Obtener todas las canciones de un álbum
 router.get('/:id/canciones', async (req, res) => {
   try {
@@ -40,7 +54,7 @@ router.get('/:id/canciones', async (req, res) => {
 });
 
 // Ruta para agregar una canción a un álbum específico
-router.put('/:albumId/canciones', async (req, res) => {
+router.put('/:id/canciones', async (req, res) => {
     try {
       const { titulo, duracion, youtubeLink } = req.body;
       const album = await Album.findById(req.params.albumId);
@@ -55,7 +69,7 @@ router.put('/:albumId/canciones', async (req, res) => {
         album: album._id,
       });
   
-      await nuevaCancion.save();
+      await nuevaCancion.push();
   
       res.status(201).json(nuevaCancion);
     } catch (error) {

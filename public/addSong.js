@@ -1,11 +1,10 @@
 
-
     document.addEventListener('DOMContentLoaded', function () {
         let boton = document.getElementById("guardarBtn");
     
         boton.addEventListener('click', async function (e) {
             e.preventDefault();
-            
+    
             // Obtener los valores del formulario
             let titulo = document.getElementById("nombreCancion").value;
             let duracion = document.getElementById("duracion").value;
@@ -51,5 +50,4 @@
             }
         });
     });
-    
-    
+     

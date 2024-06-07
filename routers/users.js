@@ -1,40 +1,45 @@
+
+
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models');
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-// Crear un usuario
-router.post('/usuarios', async (req, res) => {
+// Registrar un nuevo usuario
+router.post('/register', async (req, res) => {
     try {
-        const newUser = new User(req.body);
-        await newUser .save();
-        res.status(201).json(newUser );
+        const { nombre, apellido, mail, pass } = req.body;
+        const user = new User({ nombre, apellido, mail, pass });
+        await user.save();
+        res.status(201).json({ message: 'Usuario registrado correctamente' });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 });
 
-// Obtener un usuario por id (excluyendo la contraseña)
-router.get('/usuario/:id', async (req, res) => {
+// Iniciar sesión
+router.post('/login', async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).select('-password');
+        const { mail, pass } = req.body;
+        const user = await User.findOne({ mail });
         if (!user) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
-        res.json(user);
+
+        const isMatch = await bcrypt.compare(pass, user.pass);
+        if (!isMatch) {
+            return res.status(400).json({ error: 'Contraseña incorrecta' });
+        }
+
+        const token = jwt.sign({ userId: user._id }, 'secretKey', { expiresIn: '1h' });
+        res.json({ token });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
 });
 
-// Editar los datos de un usuario
-router.put('/usuario/:id', async (req, res) => {
-    try {
-        const editUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true }).select('-password');
-        if (!editUser) {
-            return res.status(404).json({ error: 'Usuario no encontrado' });
-        }
-        res.json(editUser);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+module.exports = router;
+
+
+

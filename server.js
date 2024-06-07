@@ -21,10 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Importar y usar enrutadores
 const albumRouter = require('./routers/albums');
-const cancionRouter = require('./routers/cancion');
+const userRouter = require('./routers/users'); // Agregada ruta usuario
 
 app.use('/albums', albumRouter);
-app.use('/canciones', cancionRouter);
+app.use('/users', userRouter); // Añadir rutas de usuarios
 
 // Iniciar el servidor
 app.listen(port, () => {
