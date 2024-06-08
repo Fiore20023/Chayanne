@@ -31,6 +31,7 @@ try{
                 icon: 'success',
                 confirmButtonText: 'ok',
             })
+              
         
         .then(() => {
             window.location.href = `./album.html?album=${albumId}`;
