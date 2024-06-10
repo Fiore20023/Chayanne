@@ -8,7 +8,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
-const password = process.env.PASSWORD;
+//const password = process.env.PASSWORD;
 
 // Conectar a MongoDB
 mongoose.connect("mongodb+srv://Fiorella:Prueba2024@cluster0.hdrctxp.mongodb.net/proyectoChayanne?retryWrites=true&w=majority&appName=Cluster0")
