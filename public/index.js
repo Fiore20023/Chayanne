@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function getAlbums() {
       try {
-          const response = await axios.get('http://localhost:5000/albums');
+          const response = await axios.get('https://chayanne.onrender.com/albums');
           renderAlbums(response.data);
       } catch (error) {
           console.error('Error fetching albums:', error);
