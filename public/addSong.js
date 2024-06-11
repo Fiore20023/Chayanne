@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
             try {
                 // Enviar los datos al servidor
-                const response = await axios.post(`https://chayanne.onrender.com/albums/${albumId}/canciones`, {
+                const response = await axios.post(`/albums/${albumId}/canciones`, {
                     titulo,
                     duracion,
                     youtubeLink
