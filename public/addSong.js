@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
         let boton = document.getElementById("guardarBtn");
     
         boton.addEventListener('click', async function (e) {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
             try {
                 // Enviar los datos al servidor
-                const response = await axios.post(`/albums/${albumId}/canciones`, {
+                const response = await axios.post(`http://localhost:5000/albums/${albumId}/canciones`, {
                     titulo,
                     duracion,
                     youtubeLink
