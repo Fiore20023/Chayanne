@@ -25,7 +25,7 @@
     
             try {
                 // Enviar los datos al servidor
-                const response = await axios.post(`http://localhost:5000/albums/${albumId}/canciones`, {
+                const response = await axios.post(`/albums/${albumId}/canciones`, {
                     titulo,
                     duracion,
                     youtubeLink
