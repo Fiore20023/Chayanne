@@ -1,5 +1,4 @@
-
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
         let boton = document.getElementById("guardarBtn");
     
         boton.addEventListener('click', async function (e) {
