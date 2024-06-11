@@ -9,7 +9,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     const pass = document.getElementById('pass').value;
 
     try {
-        const response = await axios.post('http://localhost:5000/users', {
+        const response = await axios.post('https://chayanne.onrender.com/users', {
             nombre,
             apellido,
             mail,
