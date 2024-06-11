@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function getAlbumDetails(albumId) {
       try {
-          const response = await axios.get(`https://chayanne.onrender.com//albums/${albumId}`);
+          const response = await axios.get(`https://chayanne.onrender.com/albums/${albumId}`);
           const album = response.data;
           renderAlbumDetails(album);
       } catch (error) {
