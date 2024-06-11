@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function getAlbumDetails(albumId) {
     try {
-      const response = await axios.get(`http://localhost:5000/albums/${albumId}`);
+      const response = await axios.get(`https://chayanne.onrender.com/albums/${albumId}`);
       const album = response.data;
 
       // Llenar el formulario con los detalles del álbum
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const albumImagen = document.getElementById('imagenAlbum').value;
 
     try {
-      const response = await axios.put(`http://localhost:5000/albums/${albumId}`, {
+      const response = await axios.put(`https://chayanne.onrender.com/albums/${albumId}`, {
         nombreAlbum: nombreAlbum,
         lanzamiento: albumLanzamiento,
         descripcion: albumDescripcion,
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
   deleteAlbumBtn.addEventListener('click', async function () {
     if (confirm('¿Estás seguro de que deseas eliminar este álbum?')) {
       try {
-        const response = await axios.delete(`http://localhost:5000/albums/${albumId}`);
+        const response = await axios.delete(`https://chayanne.onrender.com/albums/${albumId}`);
         console.log('Album deleted successfully:', response.data);
         alert('Album deleted successfully!');
         window.location.href = 'index.html'; // Redirigir a la página principal después de eliminar
