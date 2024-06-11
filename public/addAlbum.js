@@ -15,7 +15,7 @@
 try{
 
         // Enviar los datos al servidor
-        const response = await axios.post("http://localhost:5000/albums/", {
+        const response = await axios.post("https://chayanne.onrender.com/albums/", {
             nombreAlbum: nombreAlbum.value,
             lanzamiento: datoFecha.value,
             descripcion: datoDescripcion.value,
