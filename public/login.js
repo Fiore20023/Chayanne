@@ -15,7 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             const token = response.data.token;
             localStorage.setItem('token', token);
             alert('Inicio de sesión exitoso');
-            window.location.href = 'http://localhost:5000/index.html'; // Redirigir a la página principal después de iniciar sesión
+            window.location.href = 'https://chayanne.onrender.com/index.html'; // Redirigir a la página principal después de iniciar sesión
         } else {
             alert('Error al iniciar sesión: Respuesta incorrecta del servidor');
         }
@@ -30,6 +30,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token');
     if (token) {
-        window.location.href = 'http://localhost:5000/index.html';
+        window.location.href = 'https://chayanne.onrender.com/index.html';
     }})
 
